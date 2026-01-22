@@ -50,7 +50,7 @@ const ground = MeshBuilder.CreateGround(
   scene,
 )
 const groundMaterial = new StandardMaterial('groundMaterial', scene)
-groundMaterial.diffuseColor = new Color3(0.2, 0.2, 0.2)
+groundMaterial.diffuseColor = new Color3(0.5, 0.5, 0.5)
 ground.material = groundMaterial
 
 // Mount the Svelte app with props
