@@ -19,6 +19,7 @@
 
   let fps = $state(0)
   let isAnimating = $state(false)
+  let selectedColor = $state<'red' | 'green' | 'blue'>('blue') // Default matches initial sphere color
   let fpsInterval: ReturnType<typeof setInterval> | undefined
 
   // Update FPS counter
@@ -44,6 +45,11 @@
         scene.onBeforeRenderObservable.remove(beforeRender)
       }
     }
+  })
+
+  // Color change effect - update sphere color when selectedColor changes
+  $effect(() => {
+    changeColor(selectedColor)
   })
 
   function changeColor(color: 'red' | 'green' | 'blue') {
@@ -83,9 +89,35 @@
 
   <div class="button-group">
     <h3>Sphere Color</h3>
-    <button class="red" onclick={() => changeColor('red')}>Red</button>
-    <button class="green" onclick={() => changeColor('green')}>Green</button>
-    <button class="blue" onclick={() => changeColor('blue')}>Blue</button>
+    <div class="radio-group">
+      <label>
+        <input 
+          type="radio" 
+          name="color" 
+          value="red" 
+          bind:group={selectedColor}
+        />
+        Red
+      </label>
+      <label>
+        <input 
+          type="radio" 
+          name="color" 
+          value="green" 
+          bind:group={selectedColor}
+        />
+        Green
+      </label>
+      <label>
+        <input 
+          type="radio" 
+          name="color" 
+          value="blue" 
+          bind:group={selectedColor}
+        />
+        Blue
+      </label>
+    </div>
   </div>
 
   <div class="button-group">
