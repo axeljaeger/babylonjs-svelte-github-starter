@@ -18,7 +18,6 @@
   const { scene, camera, sphere, initialCameraPosition, initialCameraTarget }: Props = $props()
 
   let fps = $state(0)
-  let isAnimating = $state(false)
   let selectedColor = $state<'red' | 'green' | 'blue'>('blue') // Default matches initial sphere color
   let fpsInterval: ReturnType<typeof setInterval> | undefined
 
@@ -32,18 +31,6 @@
   onDestroy(() => {
     if (fpsInterval) {
       clearInterval(fpsInterval)
-    }
-  })
-
-  // Animation effect - rotate sphere when animating
-  $effect(() => {
-    if (isAnimating) {
-      const beforeRender = scene.onBeforeRenderObservable.add(() => {
-        sphere.rotation.y += 0.01
-      })
-      return () => {
-        scene.onBeforeRenderObservable.remove(beforeRender)
-      }
     }
   })
 
@@ -72,10 +59,6 @@
   function resetCamera() {
     camera.position = initialCameraPosition.clone()
     camera.setTarget(initialCameraTarget)
-  }
-
-  function toggleAnimation() {
-    isAnimating = !isAnimating
   }
 </script>
 
@@ -123,12 +106,5 @@
   <div class="button-group">
     <h3>Camera</h3>
     <button onclick={resetCamera}>Reset Camera</button>
-  </div>
-
-  <div class="button-group">
-    <h3>Animation</h3>
-    <button onclick={toggleAnimation}>
-      {isAnimating ? 'Stop' : 'Start'} Rotation
-    </button>
   </div>
 </div>
