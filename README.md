@@ -22,9 +22,8 @@ This starter demonstrates:
 - Interactive Svelte UI components overlaying the 3D scene
 - Control panel with buttons to manipulate the scene
 - FPS counter displaying real-time frame rate
-- Sphere color changing (Red, Green, Blue buttons)
+- Sphere color changing (Red, Green, Blue radio buttons)
 - Camera reset functionality
-- Animation toggle that rotates the sphere
 - Proper TypeScript typing throughout
 - Reactive state management with Svelte's runes
 
@@ -110,9 +109,8 @@ UI components are built with Svelte 5 and include:
 1. **App.svelte** - The root component that receives BabylonJS objects as props
 2. **UiPanel.svelte** - A control panel with multiple interactive features:
    - FPS counter that updates every second using `onMount`
-   - Color change buttons that modify the sphere's material
+   - Color change radio buttons that modify the sphere's material
    - Reset camera button
-   - Animation toggle button using Svelte's `$effect` for rotation
 
 ### Integration Pattern
 
