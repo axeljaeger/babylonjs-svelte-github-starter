@@ -15,7 +15,7 @@
     initialCameraTarget: Vector3
   }
 
-  let { scene, camera, sphere, initialCameraPosition, initialCameraTarget }: Props = $props()
+  const { scene, camera, sphere, initialCameraPosition, initialCameraTarget }: Props = $props()
 
   let fps = $state(0)
   let isAnimating = $state(false)

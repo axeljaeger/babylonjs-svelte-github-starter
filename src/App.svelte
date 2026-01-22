@@ -13,7 +13,7 @@
     initialCameraTarget: Vector3
   }
 
-  let { scene, camera, sphere, initialCameraPosition, initialCameraTarget }: Props = $props()
+  const { scene, camera, sphere, initialCameraPosition, initialCameraTarget }: Props = $props()
 </script>
 
 <UiPanel 

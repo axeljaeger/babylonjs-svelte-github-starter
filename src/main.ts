@@ -1,5 +1,6 @@
 import './app.css'
 import App from './App.svelte'
+import { mount } from 'svelte'
 import { Engine } from '@babylonjs/core/Engines/engine'
 import { Scene } from '@babylonjs/core/scene'
 import { Vector3 } from '@babylonjs/core/Maths/math.vector'
@@ -53,8 +54,11 @@ groundMaterial.diffuseColor = new Color3(0.2, 0.2, 0.2)
 ground.material = groundMaterial
 
 // Mount the Svelte app with props
-const app = new App({
-  target: document.getElementById('app')!,
+const appElement = document.getElementById('app')
+if (!appElement) throw new Error('Could not find app element')
+
+mount(App, {
+  target: appElement,
   props: {
     scene,
     camera,
@@ -73,5 +77,3 @@ engine.runRenderLoop(() => {
 window.addEventListener('resize', () => {
   engine.resize()
 })
-
-export default app
