@@ -120,17 +120,18 @@ The integration between BabylonJS and Svelte works as follows:
 
 ```typescript
 // In main.ts - mount Svelte app with props
+import { mount } from 'svelte'
 import App from './App.svelte'
 
-const app = new App({
-  target: document.getElementById('app')!,
+mount(App, {
+  target: appElement,
   props: {
     scene,
     camera,
     sphere,
     initialCameraPosition,
     initialCameraTarget,
-  }
+  },
 })
 ```
 

@@ -19,7 +19,7 @@
 
   let fps = $state(0)
   let isAnimating = $state(false)
-  let fpsInterval: number | undefined
+  let fpsInterval: ReturnType<typeof setInterval> | undefined
 
   // Update FPS counter
   onMount(() => {
