@@ -18,7 +18,7 @@
   const { scene, camera, sphere, initialCameraPosition, initialCameraTarget }: Props = $props()
 
   let fps = $state(0)
-  let isAnimating = $state(false)
+  let selectedColor = $state<'red' | 'green' | 'blue'>('blue') // Default matches initial sphere color
   let fpsInterval: ReturnType<typeof setInterval> | undefined
 
   // Update FPS counter
@@ -34,16 +34,9 @@
     }
   })
 
-  // Animation effect - rotate sphere when animating
+  // Color change effect - update sphere color when selectedColor changes
   $effect(() => {
-    if (isAnimating) {
-      const beforeRender = scene.onBeforeRenderObservable.add(() => {
-        sphere.rotation.y += 0.01
-      })
-      return () => {
-        scene.onBeforeRenderObservable.remove(beforeRender)
-      }
-    }
+    changeColor(selectedColor)
   })
 
   function changeColor(color: 'red' | 'green' | 'blue') {
@@ -67,10 +60,6 @@
     camera.position = initialCameraPosition.clone()
     camera.setTarget(initialCameraTarget)
   }
-
-  function toggleAnimation() {
-    isAnimating = !isAnimating
-  }
 </script>
 
 <div class="panel">
@@ -83,20 +72,39 @@
 
   <div class="button-group">
     <h3>Sphere Color</h3>
-    <button class="red" onclick={() => changeColor('red')}>Red</button>
-    <button class="green" onclick={() => changeColor('green')}>Green</button>
-    <button class="blue" onclick={() => changeColor('blue')}>Blue</button>
+    <div class="radio-group">
+      <label>
+        <input 
+          type="radio" 
+          name="color" 
+          value="red" 
+          bind:group={selectedColor}
+        />
+        Red
+      </label>
+      <label>
+        <input 
+          type="radio" 
+          name="color" 
+          value="green" 
+          bind:group={selectedColor}
+        />
+        Green
+      </label>
+      <label>
+        <input 
+          type="radio" 
+          name="color" 
+          value="blue" 
+          bind:group={selectedColor}
+        />
+        Blue
+      </label>
+    </div>
   </div>
 
   <div class="button-group">
     <h3>Camera</h3>
     <button onclick={resetCamera}>Reset Camera</button>
-  </div>
-
-  <div class="button-group">
-    <h3>Animation</h3>
-    <button onclick={toggleAnimation}>
-      {isAnimating ? 'Stop' : 'Start'} Rotation
-    </button>
   </div>
 </div>
