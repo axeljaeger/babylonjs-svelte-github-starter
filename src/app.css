@@ -169,3 +169,33 @@ button.blue:hover {
   outline: 2px solid #4a9eff;
   outline-offset: 2px;
 }
+
+.github-link-section {
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.github-link {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px 0 rgba(102, 126, 234, 0.4);
+}
+
+.github-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px 0 rgba(102, 126, 234, 0.6);
+}
+
+.github-link:active {
+  transform: translateY(0);
+}

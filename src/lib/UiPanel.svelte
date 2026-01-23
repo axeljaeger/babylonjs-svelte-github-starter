@@ -107,4 +107,10 @@
     <h3>Camera</h3>
     <button onclick={resetCamera}>Reset Camera</button>
   </div>
+
+  <div class="github-link-section">
+    <a href="https://github.com/axeljaeger/babylonjs-svelte-github-starter" target="_blank" rel="noopener noreferrer" class="github-link">
+      🔗 View on GitHub
+    </a>
+  </div>
 </div>
