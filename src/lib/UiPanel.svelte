@@ -1,65 +1,71 @@
 <script lang="ts">
-  import { onMount, onDestroy } from 'svelte'
-  import type { Scene } from '@babylonjs/core/scene'
-  import type { FreeCamera } from '@babylonjs/core/Cameras/freeCamera'
-  import type { Mesh } from '@babylonjs/core/Meshes/mesh'
-  import type { Vector3 } from '@babylonjs/core/Maths/math.vector'
-  import { Color3 } from '@babylonjs/core/Maths/math.color'
-  import type { StandardMaterial } from '@babylonjs/core/Materials/standardMaterial'
+import type { FreeCamera } from '@babylonjs/core/Cameras/freeCamera';
+import type { StandardMaterial } from '@babylonjs/core/Materials/standardMaterial';
+import { Color3 } from '@babylonjs/core/Maths/math.color';
+import type { Vector3 } from '@babylonjs/core/Maths/math.vector';
+import type { Mesh } from '@babylonjs/core/Meshes/mesh';
+import type { Scene } from '@babylonjs/core/scene';
+import { onDestroy, onMount } from 'svelte';
 
-  interface Props {
-    scene: Scene
-    camera: FreeCamera
-    sphere: Mesh
-    initialCameraPosition: Vector3
-    initialCameraTarget: Vector3
+interface Props {
+  scene: Scene;
+  camera: FreeCamera;
+  sphere: Mesh;
+  initialCameraPosition: Vector3;
+  initialCameraTarget: Vector3;
+}
+
+const {
+  scene,
+  camera,
+  sphere,
+  initialCameraPosition,
+  initialCameraTarget,
+}: Props = $props();
+
+let fps = $state(0);
+const selectedColor = $state<'red' | 'green' | 'blue'>('blue'); // Default matches initial sphere color
+let fpsInterval: ReturnType<typeof setInterval> | undefined;
+
+// Update FPS counter
+onMount(() => {
+  fpsInterval = window.setInterval(() => {
+    fps = Math.round(scene.getEngine().getFps());
+  }, 1000);
+});
+
+onDestroy(() => {
+  if (fpsInterval) {
+    clearInterval(fpsInterval);
   }
+});
 
-  const { scene, camera, sphere, initialCameraPosition, initialCameraTarget }: Props = $props()
+// Color change effect - update sphere color when selectedColor changes
+$effect(() => {
+  changeColor(selectedColor);
+});
 
-  let fps = $state(0)
-  let selectedColor = $state<'red' | 'green' | 'blue'>('blue') // Default matches initial sphere color
-  let fpsInterval: ReturnType<typeof setInterval> | undefined
-
-  // Update FPS counter
-  onMount(() => {
-    fpsInterval = window.setInterval(() => {
-      fps = Math.round(scene.getEngine().getFps())
-    }, 1000)
-  })
-
-  onDestroy(() => {
-    if (fpsInterval) {
-      clearInterval(fpsInterval)
+function changeColor(color: 'red' | 'green' | 'blue') {
+  const material = sphere.material as StandardMaterial;
+  if (material) {
+    switch (color) {
+      case 'red':
+        material.diffuseColor = new Color3(1, 0, 0);
+        break;
+      case 'green':
+        material.diffuseColor = new Color3(0, 1, 0);
+        break;
+      case 'blue':
+        material.diffuseColor = new Color3(0, 0, 1);
+        break;
     }
-  })
-
-  // Color change effect - update sphere color when selectedColor changes
-  $effect(() => {
-    changeColor(selectedColor)
-  })
-
-  function changeColor(color: 'red' | 'green' | 'blue') {
-    const material = sphere.material as StandardMaterial
-    if (material) {
-      switch (color) {
-        case 'red':
-          material.diffuseColor = new Color3(1, 0, 0)
-          break
-        case 'green':
-          material.diffuseColor = new Color3(0, 1, 0)
-          break
-        case 'blue':
-          material.diffuseColor = new Color3(0, 0, 1)
-          break
-      }
-    }
   }
+}
 
-  function resetCamera() {
-    camera.position = initialCameraPosition.clone()
-    camera.setTarget(initialCameraTarget)
-  }
+function resetCamera() {
+  camera.position = initialCameraPosition.clone();
+  camera.setTarget(initialCameraTarget);
+}
 </script>
 
 <div class="panel">
