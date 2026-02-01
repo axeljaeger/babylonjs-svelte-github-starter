@@ -24,7 +24,7 @@ const {
 }: Props = $props();
 
 let fps = $state(0);
-const selectedColor = $state<'red' | 'green' | 'blue'>('blue'); // Default matches initial sphere color
+let selectedColor = $state<'red' | 'green' | 'blue'>('blue'); // Default matches initial sphere color
 let fpsInterval: ReturnType<typeof setInterval> | undefined;
 
 // Update FPS counter
