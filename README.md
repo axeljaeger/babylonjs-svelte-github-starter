@@ -4,6 +4,8 @@ A modern starter template combining BabylonJS for 3D rendering with Svelte for r
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?repo=axeljaeger/babylonjs-svelte-github-starter)
 
+[![Checked with Biome](https://img.shields.io/badge/Checked_with-Biome-60a5fa?style=flat&logo=biome)](https://biomejs.dev)
+
 ## Features
 
 - 🎮 **BabylonJS 3D Rendering** - Powerful 3D engine with tree-shakeable imports
