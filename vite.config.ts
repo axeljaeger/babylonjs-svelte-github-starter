@@ -7,12 +7,12 @@ export default defineConfig(({ mode }) => ({
   plugins: [
     svelte(),
     mode === 'analyze' &&
-    visualizer({
-      open: true,
-      filename: 'dist/stats.html',
-      gzipSize: true,
-      brotliSize: true,
-    }),
+      visualizer({
+        open: true,
+        filename: 'dist/stats.html',
+        gzipSize: true,
+        brotliSize: true,
+      }),
   ],
   base: './',
 }));
