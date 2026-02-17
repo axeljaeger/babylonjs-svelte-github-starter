@@ -13,7 +13,7 @@
     "format": "biome format"
   },
   "dependencies": {
-    "svelte": "^5.50.1"
+    "svelte": "^5.51.2"
   },
   "devDependencies": {
     "@babylonjs/core": "^8.50.5",
