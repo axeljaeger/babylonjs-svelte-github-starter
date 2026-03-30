@@ -78,7 +78,7 @@ engine.runRenderLoop(() => {
 });
 
 const resizeObserver = new ResizeObserver(() => {
-  engine.resize(true)
+  engine.resize(true);
   scene.render();
 });
 
