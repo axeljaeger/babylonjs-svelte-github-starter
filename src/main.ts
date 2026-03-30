@@ -77,7 +77,9 @@ engine.runRenderLoop(() => {
   scene.render();
 });
 
-// Handle window resize
-window.addEventListener('resize', () => {
-  engine.resize();
+const resizeObserver = new ResizeObserver(() => {
+  engine.resize(true)
+  scene.render();
 });
+
+resizeObserver.observe(canvas);
