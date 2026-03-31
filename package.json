@@ -17,7 +17,7 @@
     "svelte": "^5.55.0"
   },
   "devDependencies": {
-    "@babylonjs/core": "^8.56.2",
+    "@babylonjs/core": "^9.0.0",
     "@biomejs/biome": "2.4.9",
     "@sveltejs/vite-plugin-svelte": "^6.2.4",
     "@tsconfig/svelte": "^5.0.8",
