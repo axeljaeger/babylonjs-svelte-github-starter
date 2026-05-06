@@ -19,7 +19,7 @@ interface Props {
 
 let { color = $bindable(), fps = () => {} }: Props = $props();
 
-let canvasRef: HTMLCanvasElement | null = null;
+let canvasRef: HTMLCanvasElement;
 let engine: Engine | null = null;
 let scene: Scene | null = null;
 let camera: FreeCamera | null;
@@ -68,7 +68,7 @@ onMount(() => {
     scene?.render();
   });
 
-  resizeObserver.observe(canvasRef!);
+  resizeObserver.observe(canvasRef);
 });
 
 // Update FPS counter
