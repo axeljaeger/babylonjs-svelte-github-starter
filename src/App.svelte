@@ -1,31 +1,22 @@
 <script lang="ts">
-import type { FreeCamera } from '@babylonjs/core/Cameras/freeCamera';
-import type { Vector3 } from '@babylonjs/core/Maths/math.vector';
-import type { Mesh } from '@babylonjs/core/Meshes/mesh';
-import type { Scene } from '@babylonjs/core/scene';
-import UiPanel from './lib/UiPanel.svelte';
+import Canvas from './lib/Canvas.svelte';
+import Sidebar, { type ColorPreset } from './lib/Sidebar.svelte';
 
-interface Props {
-  scene: Scene;
-  camera: FreeCamera;
-  sphere: Mesh;
-  initialCameraPosition: Vector3;
-  initialCameraTarget: Vector3;
+let babylonScene: Canvas | null = null;
+let color = $state<ColorPreset>('red');
+let fps = $state<number>(0);
+
+function resetCamera() {
+  if (babylonScene) {
+    babylonScene.resetCamera();
+  }
 }
 
-const {
-  scene,
-  camera,
-  sphere,
-  initialCameraPosition,
-  initialCameraTarget,
-}: Props = $props();
+function onFpsUpdate(value: number) {
+  fps = value;
+}
 </script>
-
-<UiPanel 
-  {scene} 
-  {camera} 
-  {sphere} 
-  {initialCameraPosition}
-  {initialCameraTarget}
+<Canvas bind:this={babylonScene} bind:color fps={onFpsUpdate} />
+<Sidebar bind:color fps={fps}
+  onResetCamera={resetCamera}
 />
