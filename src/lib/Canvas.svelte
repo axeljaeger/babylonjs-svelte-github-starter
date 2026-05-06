@@ -1,6 +1,6 @@
 <script lang="ts">
+import type { Mesh } from '@babylonjs/core';
 import { FreeCamera } from '@babylonjs/core/Cameras/freeCamera';
-
 import { Engine } from '@babylonjs/core/Engines/engine';
 import { HemisphericLight } from '@babylonjs/core/Lights/hemisphericLight';
 import { StandardMaterial } from '@babylonjs/core/Materials/standardMaterial';
@@ -9,10 +9,8 @@ import { Vector3 } from '@babylonjs/core/Maths/math.vector';
 import { CreateGround } from '@babylonjs/core/Meshes/Builders/groundBuilder';
 import { CreateSphere } from '@babylonjs/core/Meshes/Builders/sphereBuilder';
 import { Scene } from '@babylonjs/core/scene';
-
 import { onDestroy, onMount } from 'svelte';
 import type { ColorPreset } from './Sidebar.svelte';
-import type { Mesh } from '@babylonjs/core';
 
 interface Props {
   color: ColorPreset;
