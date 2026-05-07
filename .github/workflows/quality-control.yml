@@ -21,3 +21,5 @@ jobs:
       - name: Run Biome with readable terminal output
         if: failure()
         run: biome ci --reporter=summary --max-diagnostics=50
+      - name: Svelte check
+        run: npm run check
