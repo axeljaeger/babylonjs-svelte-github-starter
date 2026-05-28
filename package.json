@@ -19,7 +19,7 @@
   "devDependencies": {
     "@babylonjs/core": "^9.5.1",
     "@biomejs/biome": "2.4.15",
-    "@sveltejs/vite-plugin-svelte": "^7.1.1",
+    "@sveltejs/vite-plugin-svelte": "^7.1.2",
     "@tsconfig/svelte": "^5.0.8",
     "rollup-plugin-visualizer": "^7.0.1",
     "svelte-check": "^4.4.8",
