@@ -14,7 +14,7 @@
     "format:fix": "biome format --fix"
   },
   "dependencies": {
-    "svelte": "^5.56.9"
+    "svelte": "^5.57.1"
   },
   "devDependencies": {
     "@babylonjs/core": "^9.21.2",
@@ -24,6 +24,6 @@
     "rollup-plugin-visualizer": "^7.1.1",
     "svelte-check": "^4.7.6",
     "typescript": "^6.0.3",
-    "vite": "^8.2.1"
+    "vite": "^8.3.1"
   }
 }
